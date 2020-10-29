@@ -9,6 +9,7 @@ export default class Landing extends React.Component{
       triviaData: [],
       correctAnswers: 0,
       currentQuestNum: 0,
+      lastQuestion: false
     }
     this.getData = this.getData.bind(this)
     this.shuffle = this.shuffle.bind(this)
@@ -41,6 +42,9 @@ export default class Landing extends React.Component{
       this.setState({correctAnswers: this.state.correctAnswers+1})
     }
     this.state.currentQuestNum++;
+    if(this.state.currentQuestNum === 10){
+      this.setState({lastQuestion: true})
+    }
   }
 
   async getData(){
@@ -55,6 +59,7 @@ export default class Landing extends React.Component{
     }
   }
   render(){
+    if(!this.state.lastQuestion){
     return(
       <div>
        <Questions triviaQuestions={this.state.triviaData}
@@ -63,6 +68,8 @@ export default class Landing extends React.Component{
        />
       </div>
     )
+  } else {
+ return <div>final score: {this.state.correctAnswers}</div>
   }
-
+  }
 }
