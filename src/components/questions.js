@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 
 export const Questions = (props)=>{
   let [questions, setNextQuestion] = useState(0)
-  // let [correctAnswerCount, setCorrectAnswerCount] = useState(0)
+  let [questionNum, setQuestNum] = useState(1)
   const tenQuestions = props.triviaQuestions
   const correctAnswerFunc = props.confirmCorrectAnswer
+
 console.log(props)
 if(tenQuestions.length !== 0){
   const correctAnswer = tenQuestions[questions].correct
@@ -12,16 +13,16 @@ if(tenQuestions.length !== 0){
   const answers = []
   answers.push(...tenQuestions[questions].incorrect)
   answers.push(correctAnswer)
-
+  const currentQuestionNum = props.currQuest + 1
   const randomizedAnswers = shuffle(answers)
   return(
 
   <div>
-    <h1>Question </h1>
+    <h1>Question {questionNum}</h1>
     {tenQuestions[questions].question}
     {randomizedAnswers.map((answer)=>(
       <div>
-        {answer}<button onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer)}}>choose this answer</button>
+        {answer}<button onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer); setQuestNum(questionNum = questionNum +1)}}>choose this answer</button>
       </div>
     ))}
   </div>

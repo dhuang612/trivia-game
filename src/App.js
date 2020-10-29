@@ -5,9 +5,9 @@ import Landing from './components/Landing';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <h1 className="App-header">
       Welcome to Trivia
-      </header>
+      </h1>
       <Landing/>
     </div>
   );
