@@ -34,7 +34,9 @@ export default class Landing extends React.Component{
     }
   }
 
+  // checkCorrectAnswer(answer){
 
+  // }
 
   async getData(){
     try {

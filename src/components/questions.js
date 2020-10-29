@@ -6,19 +6,23 @@ export const Questions = (props)=>{
   const tenQuestions = props.triviaQuestions
 console.log(props)
 if(tenQuestions.length !== 0){
+  const correctAnswer = tenQuestions[questions].correct
   const shuffle = props.shuffleFunc
   const answers = []
-  answers.push(...tenQuestions[0].incorrect)
-  answers.push(tenQuestions[0].correct)
+  answers.push(...tenQuestions[questions].incorrect)
+  answers.push(correctAnswer)
   console.log(answers)
   const randomizedAnswers = shuffle(answers)
+  console.log(questions)
   return(
 
   <div>
-    <h1>Question</h1>
-    {tenQuestions[0].question}
+    <h1>Question </h1>
+    {tenQuestions[questions].question}
     {randomizedAnswers.map((answer)=>(
-      <div>{answer}</div>
+      <div>
+        {answer}<button onClick={()=> setNextQuestion(questions = questions+1)}>choose this answer</button>
+      </div>
     ))}
   </div>
   )
