@@ -38,10 +38,12 @@ export default class Landing extends React.Component{
   }
 
   checkCorrectAnswer(answer){
+
     if(answer === this.state.triviaData[this.state.currentQuestNum].correct){
       this.setState({correctAnswers: this.state.correctAnswers+1})
     }
     this.state.currentQuestNum++;
+
     if(this.state.currentQuestNum === 10){
       this.setState({lastQuestion: true})
     }
@@ -59,6 +61,7 @@ export default class Landing extends React.Component{
     }
   }
   render(){
+
     if(!this.state.lastQuestion){
     return(
       <div>
@@ -66,10 +69,11 @@ export default class Landing extends React.Component{
         shuffleFunc={this.shuffle}
         confirmCorrectAnswer={this.checkCorrectAnswer}
        />
+
       </div>
     )
   } else {
- return <div>final score: {this.state.correctAnswers}</div>
+    return <div>final score: {this.state.correctAnswers}</div>
   }
   }
 }
