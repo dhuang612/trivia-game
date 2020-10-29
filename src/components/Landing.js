@@ -6,11 +6,13 @@ export default class Landing extends React.Component{
   constructor(){
     super()
     this.state = {
-      triviaData: []
+      triviaData: [],
+      correctAnswers: 0,
+      currentQuestNum: 0,
     }
     this.getData = this.getData.bind(this)
     this.shuffle = this.shuffle.bind(this)
-    // this.checkCorrectAnswer = this.checkCorrectAnswer.bind(this)
+    this.checkCorrectAnswer = this.checkCorrectAnswer.bind(this)
   }
   async componentDidMount(){
    await this.getData()
@@ -34,9 +36,12 @@ export default class Landing extends React.Component{
     }
   }
 
-  // checkCorrectAnswer(answer){
-
-  // }
+  checkCorrectAnswer(answer){
+    if(answer === this.state.triviaData[this.state.currentQuestNum].correct){
+      this.setState({correctAnswers: this.state.correctAnswers+1})
+    }
+    this.state.currentQuestNum++;
+  }
 
   async getData(){
     try {
@@ -54,6 +59,7 @@ export default class Landing extends React.Component{
       <div>
        <Questions triviaQuestions={this.state.triviaData}
         shuffleFunc={this.shuffle}
+        confirmCorrectAnswer={this.checkCorrectAnswer}
        />
       </div>
     )
