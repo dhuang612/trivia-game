@@ -5,8 +5,18 @@ export const Questions = (props)=>{
 
   const tenQuestions = props.triviaQuestions
   console.log(tenQuestions)
+if(tenQuestions.length !== 0){
   return(
-  <div>{tenQuestions[0].question}</div>
-  )
 
+  <div>
+    <h1>Question</h1>
+    {tenQuestions[0].question}
+
+  </div>
+  )
+  } else{
+    return(
+      <div>Loading...</div>
+    )
+  }
 }
