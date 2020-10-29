@@ -10,6 +10,7 @@ export default class Landing extends React.Component{
     }
     this.getData = this.getData.bind(this)
     this.shuffle = this.shuffle.bind(this)
+    // this.checkCorrectAnswer = this.checkCorrectAnswer.bind(this)
   }
   async componentDidMount(){
    await this.getData()
@@ -33,9 +34,11 @@ export default class Landing extends React.Component{
     }
   }
 
+
+
   async getData(){
     try {
-      const response = await fetch('/Apprentice_TandemFor400_Data.json')
+    const response = await fetch('/Apprentice_TandemFor400_Data.json')
     const questions = await response.json();
     const shuffledQuestions = this.shuffle(questions)
     const currQuestions = shuffledQuestions.slice(0,10)
@@ -47,7 +50,9 @@ export default class Landing extends React.Component{
   render(){
     return(
       <div>
-       <Questions triviaQuestions={this.state.triviaData}/>
+       <Questions triviaQuestions={this.state.triviaData}
+        shuffleFunc={this.shuffle}
+       />
       </div>
     )
   }
