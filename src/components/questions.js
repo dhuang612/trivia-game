@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Questions.css';
 
 export const Questions = (props)=>{
   let [questions, setNextQuestion] = useState(0)
@@ -20,14 +21,14 @@ if(tenQuestions.length !== 0 && questionNum <= 10){
 
   <div>
     <h1>Question {questionNum}</h1>
-    {tenQuestions[questions].question}
+    <div id="question">{tenQuestions[questions].question}</div>
     {randomizedAnswers.map((answer)=>(
       <div>
         {answer} <Button variant="outline-primary" onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer); setQuestNum(questionNum = questionNum +1)}}>choose this answer</Button>
       </div>
     ))}
     {theCorrectAnswers ? theCorrectAnswers.map((answers)=>(
-      <div>The answer for question #{questionNum -1} is {answers}</div>
+      <div id="showAnswer">The answer for question #{questionNum -1} is {answers}</div>
     )) : null}
   </div>
   )

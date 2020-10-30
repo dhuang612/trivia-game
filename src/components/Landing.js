@@ -1,5 +1,5 @@
 import React from 'react';
-import {Questions} from './questions';
+import {Questions} from './Questions';
 import './Landing.css'
 
 export default class Landing extends React.Component{
