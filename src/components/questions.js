@@ -5,8 +5,9 @@ export const Questions = (props)=>{
   let [questionNum, setQuestNum] = useState(1)
   const tenQuestions = props.triviaQuestions
   const correctAnswerFunc = props.confirmCorrectAnswer
-
+  const theCorrectAnswers = props.correctAnswers
 console.log(props)
+console.log(theCorrectAnswers)
 if(tenQuestions.length !== 0 && questionNum <= 10){
   const correctAnswer = tenQuestions[questions].correct
   const shuffle = props.shuffleFunc
@@ -24,6 +25,9 @@ if(tenQuestions.length !== 0 && questionNum <= 10){
         {answer}<button onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer); setQuestNum(questionNum = questionNum +1)}}>choose this answer</button>
       </div>
     ))}
+    {theCorrectAnswers ? theCorrectAnswers.map((answer)=>(
+      <div>The answer for question #{questionNum -1} {answer}</div>
+    )) : null}
   </div>
   )
   } else{

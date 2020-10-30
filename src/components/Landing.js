@@ -9,7 +9,8 @@ export default class Landing extends React.Component{
       triviaData: [],
       correctAnswers: 0,
       currentQuestNum: 0,
-      lastQuestion: false
+      lastQuestion: false,
+      answers: []
     }
     this.getData = this.getData.bind(this)
     this.shuffle = this.shuffle.bind(this)
@@ -37,6 +38,7 @@ export default class Landing extends React.Component{
     }
   }
 
+
   checkCorrectAnswer(answer){
     if(this.state.currentQuestNum <= 9){
       this.setState((prevState, props)=>({
@@ -45,7 +47,7 @@ export default class Landing extends React.Component{
     if(answer === this.state.triviaData[this.state.currentQuestNum].correct){
       this.setState({correctAnswers: this.state.correctAnswers+1})
     }
-
+    this.setState({answers: [this.state.triviaData[this.state.currentQuestNum].correct]})
     if(this.state.currentQuestNum === 9){
       this.setState({lastQuestion: true})
     }
@@ -64,13 +66,13 @@ export default class Landing extends React.Component{
     }
   }
   render(){
-
     if(!this.state.lastQuestion){
     return(
       <div>
        <Questions triviaQuestions={this.state.triviaData}
         shuffleFunc={this.shuffle}
         confirmCorrectAnswer={this.checkCorrectAnswer}
+        correctAnswers = {this.state.answers}
        />
 
       </div>
