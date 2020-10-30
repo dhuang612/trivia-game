@@ -26,7 +26,7 @@ if(tenQuestions.length !== 0 && questionNum <= 10){
       </div>
     ))}
     {theCorrectAnswers ? theCorrectAnswers.map((answer)=>(
-      <div>The answer for question #{questionNum -1} {answer}</div>
+      <div>The answer for question #{questionNum -1} is {theCorrectAnswers}</div>
     )) : null}
   </div>
   )
