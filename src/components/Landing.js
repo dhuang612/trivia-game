@@ -1,6 +1,6 @@
 import React from 'react';
 import {Questions} from './questions';
-
+import './Landing.css'
 
 export default class Landing extends React.Component{
   constructor(){
@@ -78,7 +78,10 @@ export default class Landing extends React.Component{
       </div>
     )
   } else {
-    return <div>final score: {this.state.correctAnswers}</div>
+    return (<div id="correctAnswerTally">
+      Thank you for taking this quiz!
+      <p id="answers">final number of correct answers: {this.state.correctAnswers}</p>
+      </div>)
   }
   }
 }
