@@ -7,13 +7,12 @@ export const Questions = (props)=>{
   const correctAnswerFunc = props.confirmCorrectAnswer
 
 console.log(props)
-if(tenQuestions.length !== 0){
+if(tenQuestions.length !== 0 && questionNum <= 10){
   const correctAnswer = tenQuestions[questions].correct
   const shuffle = props.shuffleFunc
   const answers = []
   answers.push(...tenQuestions[questions].incorrect)
   answers.push(correctAnswer)
-  const currentQuestionNum = props.currQuest + 1
   const randomizedAnswers = shuffle(answers)
   return(
 

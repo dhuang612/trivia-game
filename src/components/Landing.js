@@ -38,16 +38,19 @@ export default class Landing extends React.Component{
   }
 
   checkCorrectAnswer(answer){
-
+    if(this.state.currentQuestNum <= 9){
+      this.setState((prevState, props)=>({
+        currentQuestNum: prevState.currentQuestNum + 1
+      }))
     if(answer === this.state.triviaData[this.state.currentQuestNum].correct){
       this.setState({correctAnswers: this.state.correctAnswers+1})
     }
-    this.state.currentQuestNum++;
 
-    if(this.state.currentQuestNum === 10){
+    if(this.state.currentQuestNum === 9){
       this.setState({lastQuestion: true})
     }
   }
+}
 
   async getData(){
     try {
