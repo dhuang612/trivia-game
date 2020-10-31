@@ -89,7 +89,7 @@ export default class Landing extends React.Component{
     return (<div id="correctAnswerTally">
       Thank you for taking this quiz!
       <p id="answers">final number of correct answers: {this.state.correctAnswers}</p>
-      <Button onClick={this.resetGame}>Play again?</Button>
+      <Button variant="success"onClick={this.resetGame}>Play again?</Button>
       </div>)
   }
   }

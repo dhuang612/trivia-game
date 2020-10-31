@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Questions.css';
 
@@ -10,7 +11,7 @@ export const Questions = (props)=>{
   const correctAnswerFunc = props.confirmCorrectAnswer
   const theCorrectAnswers = props.correctAnswers
 
-if(tenQuestions.length !== 0 && questionNum <= 10 && theCorrectAnswers !== []){
+if(tenQuestions.length !== 0 && questionNum <= 10){
   const correctAnswer = tenQuestions[questions].correct
   const shuffle = props.shuffleFunc
   const answers = []
@@ -20,17 +21,19 @@ if(tenQuestions.length !== 0 && questionNum <= 10 && theCorrectAnswers !== []){
   return(
 
   <div>
-    <h1>Question {questionNum}</h1>
-    <div id="question">{tenQuestions[questions].question}</div>
+    <Card>
+    <Card.Header>Question {questionNum}</Card.Header>
+    <Card.Title id="question">{tenQuestions[questions].question}</Card.Title>
     {randomizedAnswers.map((answer)=>(
-      <div>
-        {answer} <Button variant="outline-primary" onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer); setQuestNum(questionNum = questionNum +1);}}>choose this answer</Button>
-      </div>
+      <Card.Text>
+        {answer} <Button variant="outline-primary" className="btnClass"onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer); setQuestNum(questionNum = questionNum +1);}}>choose this answer</Button>
+      </Card.Text>
     ))}
 
-    {questionNum === 10 ? theCorrectAnswers === [] : (theCorrectAnswers ? theCorrectAnswers.map((answers)=>(
+{theCorrectAnswers ? theCorrectAnswers.map((answers)=>(
       <div id="showAnswer">The answer for question #{questionNum -1} is {answers}</div>
-    )): <div>Please play again!</div> )}
+    )) : null}
+    </Card>
   </div>
   )
   } else{
