@@ -1,5 +1,7 @@
 import React from 'react';
 import {Questions} from './Questions';
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Landing.css'
 
 export default class Landing extends React.Component{
@@ -15,6 +17,7 @@ export default class Landing extends React.Component{
     this.getData = this.getData.bind(this)
     this.shuffle = this.shuffle.bind(this)
     this.checkCorrectAnswer = this.checkCorrectAnswer.bind(this)
+    this.resetGame = this.resetGame.bind(this)
   }
   async componentDidMount(){
    await this.getData()
@@ -38,6 +41,10 @@ export default class Landing extends React.Component{
     }
   }
 
+  async resetGame(){
+    this.setState({lastQuestion: !this.state.lastQuestion, correctAnswers: 0, currentQuestNum: 0, answers: []})
+    console.log(this.state.triviaData)
+  }
 
   checkCorrectAnswer(answer){
     if(this.state.currentQuestNum <= 9){
@@ -73,6 +80,7 @@ export default class Landing extends React.Component{
         shuffleFunc={this.shuffle}
         confirmCorrectAnswer={this.checkCorrectAnswer}
         correctAnswers = {this.state.answers}
+        numOfCorrectAnswers = {this.state.correctAnswers}
        />
 
       </div>
@@ -81,6 +89,7 @@ export default class Landing extends React.Component{
     return (<div id="correctAnswerTally">
       Thank you for taking this quiz!
       <p id="answers">final number of correct answers: {this.state.correctAnswers}</p>
+      <Button onClick={this.resetGame}>Play again?</Button>
       </div>)
   }
   }

@@ -10,7 +10,7 @@ export const Questions = (props)=>{
   const correctAnswerFunc = props.confirmCorrectAnswer
   const theCorrectAnswers = props.correctAnswers
 
-if(tenQuestions.length !== 0 && questionNum <= 10){
+if(tenQuestions.length !== 0 && questionNum <= 10 && theCorrectAnswers !== []){
   const correctAnswer = tenQuestions[questions].correct
   const shuffle = props.shuffleFunc
   const answers = []
@@ -24,17 +24,22 @@ if(tenQuestions.length !== 0 && questionNum <= 10){
     <div id="question">{tenQuestions[questions].question}</div>
     {randomizedAnswers.map((answer)=>(
       <div>
-        {answer} <Button variant="outline-primary" onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer); setQuestNum(questionNum = questionNum +1)}}>choose this answer</Button>
+        {answer} <Button variant="outline-primary" onClick={()=> {setNextQuestion(questions = questions+1); correctAnswerFunc(answer); setQuestNum(questionNum = questionNum +1);}}>choose this answer</Button>
       </div>
     ))}
-    {theCorrectAnswers ? theCorrectAnswers.map((answers)=>(
+
+    {questionNum === 10 ? theCorrectAnswers === [] : (theCorrectAnswers ? theCorrectAnswers.map((answers)=>(
       <div id="showAnswer">The answer for question #{questionNum -1} is {answers}</div>
-    )) : null}
+    )): <div>Please play again!</div> )}
   </div>
   )
   } else{
     return(
-      <div>Loading...</div>
+
+      <div>Loading...
+
+
+      </div>
     )
   }
 }
