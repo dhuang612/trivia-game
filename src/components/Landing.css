@@ -1,7 +1,15 @@
+
+
 #correctAnswerTally{
+  position: fixed;
+  top: 35%;
+  left: 42%;
   text-align: center;
+  padding: 5px 5px;
+  width:50%;
 }
 
 #answers{
   margin-top: 15px;
+  padding: 15px 15px;
 }

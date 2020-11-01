@@ -1,8 +1,9 @@
 import React from 'react';
 import {Questions} from './Questions';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Landing.css'
+import './Landing.css';
 
 export default class Landing extends React.Component{
   constructor(){
@@ -72,7 +73,17 @@ export default class Landing extends React.Component{
       console.log(error)
     }
   }
+
   render(){
+    let message = ''
+    if(this.state.correctAnswers >= 9){
+      message = 'Wow great job, you are really good at this!';
+    }
+    else if(this.state.correctAnswers >=6 && this.state.correctAnswers <9){
+      message = "Not bad! Try again to see if you can get an even better score!"
+    } else {
+      message ="Keep practicing!"
+    }
     if(!this.state.lastQuestion){
     return(
       <div>
@@ -86,11 +97,13 @@ export default class Landing extends React.Component{
       </div>
     )
   } else {
-    return (<div id="correctAnswerTally">
-      Thank you for taking this quiz!
-      <p id="answers">final number of correct answers: {this.state.correctAnswers}</p>
-      <Button variant="success"onClick={this.resetGame}>Play again?</Button>
-      </div>)
+    return (<Card border="secondary" style={{ width: '18rem' }} id="correctAnswerTally">
+     <Card.Header> Thank you for taking this quiz!</Card.Header>
+     {message}
+      <Card.Title id="answers">final number of correct answers: {this.state.correctAnswers}</Card.Title>
+      <Card.Text>Click the button below to play again! </Card.Text>
+      <Button variant="success"onClick={this.resetGame}>Play again</Button>
+      </Card>)
   }
   }
 }
