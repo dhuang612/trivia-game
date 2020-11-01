@@ -44,7 +44,7 @@ export default class Landing extends React.Component{
 
   async resetGame(){
     this.setState({lastQuestion: !this.state.lastQuestion, correctAnswers: 0, currentQuestNum: 0, answers: []})
-    console.log(this.state.triviaData)
+    await this.getData()
   }
 
   checkCorrectAnswer(answer){
@@ -70,7 +70,7 @@ export default class Landing extends React.Component{
     const currQuestions = shuffledQuestions.slice(0,10)
       this.setState({triviaData: currQuestions})
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
